@@ -39,9 +39,12 @@ class ImageCycleWidget(QWidget):
     def contextMenuEvent(self, event: QContextMenuEvent):
         contextMenu = QMenu(self)
         fooAction = contextMenu.addAction("Foo")
+        idle_animation_action_2 = contextMenu.addAction("idle 2")
         action = contextMenu.exec_(self.mapToGlobal(event.pos()))
         if action == fooAction:
             print("foo!")
+        elif action == idle_animation_action_2:
+            print("idle animation action")
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
