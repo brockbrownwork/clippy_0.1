@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QPixmap, QPainter
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtGui import QPixmap, QPainter, QContextMenuEvent
+from PyQt5.QtWidgets import QApplication, QWidget, QMenu
 from random import randint
 from glob import glob
 
@@ -36,6 +36,15 @@ class ImageCycleWidget(QWidget):
         pixmap = QPixmap(self.image_paths[self.current_image_index])
         painter.drawPixmap(self.rect(), pixmap)
         
+
+    def contextMenuEvent(self, event: QContextMenuEvent):
+        contextMenu = QMenu(self)
+        fooAction = contextMenu.addAction("Foo")
+        action = contextMenu.exec_(self.mapToGlobal(event.pos()))
+        if action == fooAction:
+            print("foo!")
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = ImageCycleWidget()
